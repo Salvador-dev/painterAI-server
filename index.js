@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+import imageAi from './routes/imageAi.js';
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ app.get('/', async (req, res) => {
         message: 'hola mundo'
     })
 });
+
+app.use('/api/v1/imageai', imageAi);
 
 const startServer = () => {
 
