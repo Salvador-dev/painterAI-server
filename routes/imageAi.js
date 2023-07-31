@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import { Configuration, OpenAIApi } from 'openai';
+import checkAuth from '../middleware/auth.js';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-router.route('/').post(async (req, res)=> {
+router.route('/').post(checkAuth, async (req, res)=> {
 
     try {
 

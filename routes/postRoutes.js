@@ -2,6 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import { v2 as cloudinary } from 'cloudinary';
 import Post from './../mongodb/models/post.js'
+import checkAuth from '../middleware/auth.js';
 
 dotenv.config();
 const router = express.Router();
@@ -12,7 +13,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-router.route('/').post( async (req, res) => {
+router.route('/').post(checkAuth, async (req, res) => {
 
     try {
 
